@@ -6,22 +6,22 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class SearchUsersByDelphine {
-    RequestSpecification request = RestAssured.given();
+public class GetComments_With_NonExistent_PostID {
+    RequestSpecification request = given();
 
     private Response response;
+
     @Test
-    public void SearchUserByDelphine(){
+    public void getComments_With_NonExistentPostId() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com/";
 
         response = given().relaxedHTTPSValidation()
-                .queryParam("username", "Delphine") //Passing Delphine as u
+                .queryParam("postId", "90000") //passing 9000 as Post ID query parameter
                 .when()
-                .get("/users");
-        Assert.assertEquals(response.getStatusCode(), 200);
+                .get("/comments"); //Passing comments to pass
+        Assert.assertEquals(response.getStatusCode(), 404); //validating status code is 404 Not Found
         String responseBodyAsString = response.getBody().asString();
         System.out.println(responseBodyAsString);
-        Assert.assertTrue(responseBodyAsString.contains("Delphine"));
-        response.prettyPrint();
+
     }
 }

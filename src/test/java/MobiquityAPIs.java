@@ -21,43 +21,43 @@ public class MobiquityAPIs {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com/";
 
         response = given().relaxedHTTPSValidation()
-                .queryParam("username", "Delphine")
+                .queryParam("username", "Delphine") //Passing username as Delphine
                 .when()
-                .get("/users");
-        Assert.assertEquals(response.getStatusCode(), 200);
+                .get("/users"); //passing users path
+        Assert.assertEquals(response.getStatusCode(), 200); //Validating response status 200
         String responseBodyAsString = response.getBody().asString();
         System.out.println(responseBodyAsString);
-        Assert.assertTrue(responseBodyAsString.contains("Delphine"));
+        Assert.assertTrue(responseBodyAsString.contains("Delphine")); //validating that the response string contains Delphine
         response.prettyPrint();
 
         JsonPath path = JsonPath.compile("$..id");
-        List<Object> id = path.read(response.body().prettyPrint());
+        List<Object> id = path.read(response.body().prettyPrint()); //Extracting ID from the response
 
         response = given().relaxedHTTPSValidation()
-                .queryParam("id", id)
+                .queryParam("id", id)  //passing the ID extracted from the response
                 .when()
-                .get("/posts");
-        Assert.assertEquals(response.getStatusCode(), 200);
+                .get("/posts");  //Passing posts path
+        Assert.assertEquals(response.getStatusCode(), 200); //Validating status 200
         response.body().prettyPrint();
 
         JsonPath postpath = JsonPath.compile("$..postId");
-        List<Object> postId = postpath.read(response.body().prettyPrint());
+        List<Object> postId = postpath.read(response.body().prettyPrint());  //Extracting Post ID from response string
         response = given().relaxedHTTPSValidation()
-                .queryParam("postId", postId)
+                .queryParam("postId", postId) //Passing the extracted postID from the response
                 .when()
-                .get("/comments");
-        Assert.assertEquals(response.getStatusCode(), 200);
+                .get("/comments");  //Passing comments path
+        Assert.assertEquals(response.getStatusCode(), 200);  //validating status 200
         response.body().prettyPrint();
 
         JsonPath Email = JsonPath.compile("$..email");
         List<Object> email = Email.read(response.body().prettyPrint());
-        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"; //Using regular  expression to create email format
         Pattern pattern = Pattern.compile(regex);
 
         for(int x = 0; x < email.size(); x++){
-            Matcher matcher = pattern.matcher(email.get(x).toString());
+            Matcher matcher = pattern.matcher(email.get(x).toString()); //passing the extracted email address
 
-            System.out.println(matcher.matches());
+            System.out.println(matcher.matches()); //Printing true or false according to validating of email format
         }
 
    }

@@ -15,12 +15,12 @@ public class SearchUsersWithWrongUsername {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com/";
 
         response = given().relaxedHTTPSValidation()
-                .queryParam("username", "irorffjjf")
+                .queryParam("username", "irorffjjf") //passing wrong non-existent username
                 .when()
-                .get("/users");
-        Assert.assertEquals(response.getStatusCode(), 404);
+                .get("/users"); //Passing users path
+        Assert.assertEquals(response.getStatusCode(), 404); //Validating that the response returns error 404
         String responseBodyAsString = response.getBody().asString();
         System.out.println(responseBodyAsString);
-        response.prettyPrint();
+        response.prettyPrint(); // printing response
     }
 }

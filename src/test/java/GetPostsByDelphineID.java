@@ -17,13 +17,13 @@ public class GetPostsByDelphineID {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com/";
 
         response = given().relaxedHTTPSValidation()
-                .queryParam("userId", "9")
+                .queryParam("userId", "9") //Passing 9 as userID query parameter which belongs to Delphine
                 .when()
-                .get("/posts");
-        Assert.assertEquals(response.getStatusCode(), 200);
+                .get("/posts"); //passing Posts path
+        Assert.assertEquals(response.getStatusCode(), 200); //Validating response status is 200
         String responseBodyAsString = response.getBody().asString();
         System.out.println(responseBodyAsString);
-        Assert.assertTrue(responseBodyAsString.contains("9"));
+        Assert.assertTrue(responseBodyAsString.contains("9")); //Validating that the response string contains 9
         response.prettyPrint();
     }
 }
