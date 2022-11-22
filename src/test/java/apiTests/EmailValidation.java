@@ -31,7 +31,7 @@ public class EmailValidation {
     public static void startTest()
     {
         report = new ExtentReports(System.getProperty("user.dir")+ File.pathSeparator+ "report" +File.pathSeparator+"ExtentReportResults.html");
-        test = report.startTest("Get Comments by Post ID");
+        test = report.startTest("Validating the correct email format");
     }
 
     @AfterClass
@@ -69,7 +69,12 @@ public class EmailValidation {
         for (int x = 0; x < email.size(); x++) {
             Matcher matcher = pattern.matcher(email.get(x).toString());
 
-            System.out.println(matcher.matches()); //Printing results on whether the email validation matches
+            if(matcher.matches()){
+                test.log(LogStatus.PASS, email.get(x).toString() + " Correct Format");
+
+            } else{
+                test.log(LogStatus.FAIL, email.get(x).toString() + " Incorrect Format");
+            }
         }
     }
 }

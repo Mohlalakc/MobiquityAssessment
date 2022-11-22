@@ -49,7 +49,7 @@ public class GetCommentsByPostID {
         }catch (AssertionError e){
             test.log(LogStatus.FAIL, e.toString());
             Assert.fail(e.toString());
-        } //validating status code is 200 OK
+        }
         String responseBodyAsString = response.getBody().asString();
         System.out.println(responseBodyAsString);
         Assert.assertTrue(responseBodyAsString.contains("9")); //Validating that the response string contains 9
