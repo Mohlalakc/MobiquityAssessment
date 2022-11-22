@@ -1,0 +1,13 @@
+<suite name = "suite">
+    <test name = "MobiquityAPI Test">
+        <classes>
+            <class name="EmailValidation"></class>
+            <class name="GetCommentsByPostID"></class>
+            <class name="GetPostsByDelphineID"></class>
+            <class name="MobiquityAPIs"></class>
+            <class name="SearchUsersByDelphine"></class>
+            <class name="SearchUsersWithWrongUsername"></class>
+
+        </classes>
+    </test>
+</suite>
