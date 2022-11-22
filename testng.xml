@@ -3,13 +3,13 @@
 <suite name="Mobiquity APIs">
     <test name="API Testing">
         <classes>
-            <class name="EmailValidation"/>
-            <class name="GetCommentsByPostID"/>
-            <class name="GetPostsByDelphineID"/>
-            <class name="MobiquityAPIs"/>
-            <class name="SearchUsersByDelphine"/>
-            <class name="SearchUsersWithWrongUsername"/>
-            <class name="GetComments_With_NonExistent_PostID"/>
+            <class name="apiTests.EmailValidation"/>
+            <class name="apiTests.GetCommentsByPostID"/>
+            <class name="apiTests.GetPostsByDelphineID"/>
+            <class name="apiTests.MobiquityAPIs"/>
+            <class name="apiTests.SearchUsersByDelphine"/>
+            <class name="apiTests.SearchUsersWithWrongUsername"/>
+            <class name="apiTests.GetComments_With_NonExistent_PostID"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

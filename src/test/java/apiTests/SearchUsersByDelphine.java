@@ -1,26 +1,29 @@
+package apiTests;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class SearchUsersWithWrongUsername {
+public class SearchUsersByDelphine {
     RequestSpecification request = RestAssured.given();
 
     private Response response;
     @Test
-    public void SearchUserWrongUsername(){
+    public void SearchUserByDelphine(){
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com/";
 
         response = given().relaxedHTTPSValidation()
-                .queryParam("username", "irorffjjf") //passing wrong non-existent username
+                .queryParam("username", "Delphine") //Passing Delphine as u
                 .when()
-                .get("/users"); //Passing users path
-        Assert.assertEquals(response.getStatusCode(), 404); //Validating that the response returns error 404
+                .get("/users");
+        Assert.assertEquals(response.getStatusCode(), 200);
         String responseBodyAsString = response.getBody().asString();
         System.out.println(responseBodyAsString);
-        response.prettyPrint(); // printing response
+        Assert.assertTrue(responseBodyAsString.contains("Delphine"));
+        response.prettyPrint();
     }
 }
